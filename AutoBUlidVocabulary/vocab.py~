@@ -4,7 +4,7 @@ import os
 class Vocab:
     """
     自动构建vocab词典
-
+    
     """
     def __init__(self):
         #判断文件是否存在
@@ -14,7 +14,7 @@ class Vocab:
             #没有创建
             f = open('vocab.txt','w')
             f.close()
-            #return {}
+            return {}
 
     def load_vocab(self):
         """
@@ -29,7 +29,7 @@ class Vocab:
         # print(v)
         return v
 
-
+            
     def add_vocab(self,text_arr):
         """
         添加vocab

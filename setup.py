@@ -16,7 +16,7 @@ def read_requirements(filename):
 
 setup(
     name='AutoBUlidVocabulary',
-    version='0.0.1.1',
+    version='0.0.1.3',
     description='Auto BUlid Vocabulary',
     author='Terry Chan',
     author_email='napoler2008@gmail.com',
@@ -30,5 +30,5 @@ setup(
 
 
 # python3 setup.py sdist
-# #python3 setup.py install
+# python3 setup.py install
 # python3 setup.py sdist upload
