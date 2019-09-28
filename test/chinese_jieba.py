@@ -6,6 +6,10 @@ from AutoBUlidVocabulary import Vocab
 
 import jieba
 
+"""
+对中文语句进行分词转换成vocab
+
+"""
 
 
 
@@ -20,14 +24,13 @@ def text_jieba(text,sequence_length):
     for it in seg_list:
         n_seg_list.append(it)
 
-    print(n_seg_list)
+    # print(n_seg_list)
     seg_list=n_seg_list
     if len(seg_list)>sequence_length:
         seg_list=seg_list[:sequence_length]
     else:
         seg_list=seg_list+(sequence_length-len(seg_list))*['None']
             #   return " ".join(seg_list)
-            
     return seg_list
 
 
@@ -35,7 +38,7 @@ def jieba_sentences(sentences,sequence_length):
   new_s=[]
   for s in sentences:
     new_s.append(text_jieba(s,sequence_length))
-  print(new_s)
+#   print(new_s)
   return new_s
 
 
@@ -50,10 +53,9 @@ sentences=["哈士奇，完美地契合了家里排行老二的性格。",
            ]
 sequence_length=30
 sentences_l =jieba_sentences(sentences,sequence_length)
-print(sentences_l)
+# print(sentences_l)
 
 for word_list in sentences_l:
-
     # word_list=["哈士奇","狗子"]
     vocab=Vocab()
     vocab_list=vocab.vocab_list(word_list)
