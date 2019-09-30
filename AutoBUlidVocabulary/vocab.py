@@ -1,112 +1,103 @@
-# import numpy as np
-# import json
+import pickle
 import os
 class Vocab:
-    """
-    自动构建vocab词典
-
-    """
     def __init__(self):
-        #判断文件是否存在
-        if os.path.exists('vocab.txt'):
-            # self.vocab=self.load_vocab()
-            pass
+        pass
+
+    def bulid_vectorizer(self,sentences):
+        """
+        sentences=['生 的 小猫 也 爱吃 鸡蛋', '真是 好有爱 的 一对']
+        word_dict  
+        """
+
+    #   labels = [1, 1, 1, 0, 0, 0]  # 1 is good, 0 is not good.
+
+        word_list = " ".join(sentences).split()
+        # word_list = list(set(word_list))
+        # word_dict = {w: i for i, w in enumerate(word_list)}
+        if os.path.exists('vectorizer.pk'):
+        # 加载模型
+            word_dict=self.load()
+        # print(vocabulary) 
         else:
-            #没有创建
-            f = open('vocab.txt','w')
-            #这里定义定义一些命令数据
-            text_arr=["##Mask##","None"]
-            for item in text_arr:
-                f.write(item)
-                f.write('\n')            
-            f.close()
-            #return {}
-        self.vocab_l=self.load_vocab()  
+            word_list = " ".join(sentences).split()
+            word_dict=self.add_vectorizer( word_list)
+        # self.save(word_dict)
+        return word_dict
 
-
-    def load_vocab(self):
+        
+        return word_dict
+    def save(self, word_dict):
         """
-        加载vocab
+        保存词典
         """
-        f = open('vocab.txt')
-        v={}
-        for i,line in enumerate(f):
-            # print(line[:-1])
-            v[line[:-1]]=i
-            # d.update(line[:-1]=i)
-        # print(v)
-        self.vocab_l=v
-        return v
-
-
-    def add_vocab(self,text_arr):
+            with open('vectorizer.pk', 'wb') as fin:
+            # pickle.dump(cv, fin)
+                pickle.dump(word_dict, fin)
+    def load(self):
         """
-        添加vocab
+        加载词典
         """
-        f = open('vocab.txt','a')
-        for item in text_arr:
-            f.write(item)
-            f.write('\n')
-        f.close()
-        # return
-        self.load_vocab()
-        return True
-
-
-    def vocab(self,text):
-        """
-        自动加载
-        如果不存在则添加
-        """
-        # vocab=self.load_vocab()
-        # vocab=self.vocab_l
-        # print(vocab)
-        if text in self.vocab_l:
-            # print('vocab已经存在')
-            return self.vocab_l[text]
+        if os.path.exists('vectorizer.pk'):
+        # 加载模型
+            word_dict=pickle.load(open('vectorizer.pk', "rb"))
+            
         else:
-            self.add_vocab([text])
-            # vocab=self.load_vocab()
-        # print(vocab)
-        return self.vocab_l[text]
+            word_dict= {}
+        return word_dict
+    def add_vectorizer(self, text_arr):
+        """
+        添加新的字典元素
+        """
+        word_dict=self.load()
+        word_arr=list(word_dict.keys())
+        word_arr=word_arr+text_arr
+        word_list = list(set(word_arr))
+        word_dict = {w: i for i, w in enumerate(word_list)}
+        self.save(word_dict)
 
-    def vocab_mask(self,text):
+        return word_dict
+
+        
+
+    def get_vectorizer(self, text_arr):
         """
-        自动加载
-        如果不存在则添加
+        text_arr=['哈士奇','柯基犬']
+
+        text_ids=[0, 8, 7, 4, 6, 1, 5, 6, 9, 2, 3]
         """
-        # vocab=self.load_vocab()
-        # print(vocab)
-        if text in self.vocab_l:
-            # print('vocab已经存在')
-            return self.vocab_l[text]
+        if os.path.exists('vectorizer.pk'):
+        # 加载模型
+            word_dict=self.load()
+        # print(vocabulary) 
         else:
-            # self.add_vocab([text])
-            # vocab=self.load_vocab()
-            text="##Mask##"
-        return self.vocab_l[text]
-
-    def vocab_list(self,word_list,type="all"):
-        """
-        处理列表
-        type=all  #自动转化所有
-        type=mask #自动替换未知为mask
-        """
-        vocab_list =[]
-        if type =="all":
-            for text in word_list:
-                # print("self.vocab(text)",self.vocab(text))
-                vocab_list.append(self.vocab(text))
-            return vocab_list
-        if type == "mask":
-            for text in word_list:
-                vocab_list.append(self.vocab_mask(text))
-            return vocab_list
+            word_dict=self.bulid_vectorizer(text_arr)
+        text_ids=[]
+        for word in text_arr:
+            try:
+                text_ids.append(word_dict[word])
+            except :
+                word_dict=self.add_vectorizer([word])
+                
+                text_ids.append(word_dict[word]) 
+        print(word_dict)
+        # print(text_ids)
+        return text_ids
 
 
+# #测试代码
+# text = "哈士奇 dam cat he 柯基犬"
+# word_list = text.split()
+# print('word_list',word_list)
 
-# # 示例
-# word_list=["哈士奇","狗子"]
-# vocab=Vocab()
-# vocab_list=vocab.vocab_list(word_list)
-# print(vocab_list)
+# t = Vocab()
+# ids = t.get_vectorizer(word_list)
+# print(ids)
+
+
+
+# sentences=['生 的 小猫 也 爱吃 鸡蛋', '真是 好有爱 的 一对']
+# word_dict=t.bulid_vectorizer(sentences)
+# print("word_dict",word_dict)
+
+#  add_vectorizer(self, text_arr)
