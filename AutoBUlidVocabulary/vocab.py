@@ -79,14 +79,14 @@ class Vocab:
         # print(text_ids)
         return text_ids
     def text_voc_ids(self,text):
-    """
-    逐字获取voc值
-    """
-    # print(list(a))
-    word_list=list(text)
-    vocab_list=self.get_vectorizer(word_list)
-    # print(vocab_list)
-    return vocab_list
+        """
+        逐字获取voc值
+        """
+        # print(list(a))
+        word_list=list(text)
+        vocab_list=self.get_vectorizer(word_list)
+        # print(vocab_list)
+        return vocab_list
 
 # #测试代码
 # text = "哈士奇 dam cat he 柯基犬"
