@@ -30,8 +30,8 @@ def text_jieba(text,sequence_length):
         seg_list=seg_list[:sequence_length]
     else:
         seg_list=seg_list+(sequence_length-len(seg_list))*['None']
-            #   return " ".join(seg_list)
-    return seg_list
+    return " ".join(seg_list)
+    # return seg_list
 
 
 def jieba_sentences(sentences,sequence_length):
@@ -53,10 +53,14 @@ sentences=["哈士奇，完美地契合了家里排行老二的性格。",
            ]
 sequence_length=30
 sentences_l =jieba_sentences(sentences,sequence_length)
-# print(sentences_l)
+print(sentences_l)
 
-for word_list in sentences_l:
-    # word_list=["哈士奇","狗子"]
-    vocab=Vocab()
-    vocab_list=vocab.vocab_list(word_list)
-    print(vocab_list)
+# for word_list in sentences_l:
+#     # word_list=["哈士奇","狗子"]
+#     vocab=Vocab()
+#     vocab_list=vocab.vocab_list(word_list)
+#     print(vocab_list)
+
+vocab=Vocab()
+vocab_list=vocab.bulid_vectorizer(sentences_l)
+print(vocab_list)
