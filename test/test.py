@@ -18,7 +18,9 @@ vocab=Vocab()
 # c= vocab.text_voc_ids("饿猫饿喜欢而伟长吃饿而我热土什么")
 # print(c)
 
-word_list=['ew']
+# word_list=['n']
+text="哦哦喵星人真是太可爱了"
+word_list=list(text)
 vocab.add_vectorizer(word_list)
 
 print(vocab.load())

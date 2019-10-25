@@ -46,15 +46,15 @@ class Vocab:
         """
         word_dict=self.load()
         word_arr=list(word_dict.keys())
-        print(word_arr)
+        # print(word_arr)
         # word_arr=word_arr+text_arr
         for word in text_arr:
             word_arr.append(word)
 
         # word_list = list(set(word_arr))
-        word_list=word_arr
-        print(word_list)
-        word_dict = {w: i for i, w in enumerate(word_list)}
+        # word_list=word_arr
+        # print(word_list)
+        word_dict = {w: i for i, w in enumerate(word_arr)}
         self.save(word_dict)
 
         return word_dict
