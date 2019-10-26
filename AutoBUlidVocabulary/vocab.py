@@ -1,5 +1,5 @@
 import pickle
-import os
+import os,re
 class Vocab:
     def __init__(self,file='vectorizer.pk'):
         self.vocab_file = file
@@ -177,6 +177,7 @@ class GVocab:
         """
         文本转化成数组
         """
+        text = re.sub(r'[^\w\s]','',text)
         word_list=list(text)
         # word_list=[]
         # for word in jieba.cut(text):
