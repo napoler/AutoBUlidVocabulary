@@ -151,7 +151,10 @@ class GVocab:
         ids=[]
         # print(self.vocab)
         for word in word_list:
-            ids.append(self.vocab[word])
+            try:
+                ids.append(self.vocab[word])
+            except:
+                ids.append(self.vocab['[UNK]'])   
         return ids
     def bulid(self,word_list):
         return   self.get(word_list)
@@ -177,7 +180,7 @@ class GVocab:
         """
         文本转化成数组
         """
-        text = re.sub(r'[^\w\s]','',text)
+        # text = re.sub(r'[^\w\s]','',text)
         word_list=list(text)
         # word_list=[]
         # for word in jieba.cut(text):
