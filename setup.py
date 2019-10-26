@@ -16,7 +16,7 @@ def read_requirements(filename):
 
 setup(
     name='AutoBUlidVocabulary',
-    version='0.1.0.0',
+    version='0.1.0.1',
     description='Auto BUlid Vocabulary',
     author='Terry Chan',
     author_email='napoler2008@gmail.com',

@@ -26,7 +26,11 @@ from AutoBUlidVocabulary import *
 # print(vocab.load())
 
 
-ids=GVocab(path='./test/').text_voc_ids("哈士奇手机")
-print(ids)
+ids_list=GVocab(path='./test/').sentence_ids(" 哈士奇手机")
 
+# text_list=['[CLS]']+text_list+['[SEP]']
+# print(text_list)
 
+# ids_list=GVocab(path='./test/').get(text_list)
+
+print(ids_list)

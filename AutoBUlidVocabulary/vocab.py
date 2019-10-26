@@ -156,10 +156,38 @@ class GVocab:
     def bulid(self,word_list):
         return   self.get(word_list)
     def text_voc_ids(self,text):
+        # import jieba
+        # jieba.load_userdict( self.vocab_file)
         """
         逐字获取voc值
         """
-        # print(list(a))
-        word_list=list(text)
+        # # print(list(a))
+
+        # word_list=list(text)
+        # # word_list=[]
+        # # for word in jieba.cut(text):
+        # #     word_list.append(word)
+        # print(word_list)
+        # while ' ' in word_list:
+        #     word_list.remove(' ')
+        word_list=self.text_list(text)
         vocab_list=self.bulid(word_list)
         return vocab_list
+    def text_list(self, text):
+        """
+        文本转化成数组
+        """
+        word_list=list(text)
+        # word_list=[]
+        # for word in jieba.cut(text):
+        #     word_list.append(word)
+        # print(word_list)
+        while ' ' in word_list:
+            word_list.remove(' ')
+        return word_list
+    def sentence_ids(self,text):
+        #"""自动对句子标记开始结束""""
+        text_list=   self.text_list(text)
+        text_list=['[CLS]']+text_list+['[SEP]']
+        ids_list=self.get(text_list)
+        return ids_list
