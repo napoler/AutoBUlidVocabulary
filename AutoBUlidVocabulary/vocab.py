@@ -122,7 +122,7 @@ class GVocab:
         pass
     def download(self):
         print( "downloading with requests")
-        url = 'https://raw.githubusercontent.com/napoler/AutoBUlidVocabulary/master/AutoBUlidVocabulary/vocab.txt' 
+        url = 'https://raw.githubusercontent.com/napoler/AutoBUlidVocabulary/master/vocab.txt' 
         r = requests.get(url) 
         with open("vocab.txt", "wb") as code:
             code.write(r.content)
