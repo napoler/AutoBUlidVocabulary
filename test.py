@@ -26,7 +26,7 @@ from AutoBUlidVocabulary import *
 # print(vocab.load())
 
 
-ids=GVocab(path='./test/').bulid(['哈'])
+ids=GVocab(path='./test/').text_voc_ids("哈士奇手机")
 print(ids)
 
 

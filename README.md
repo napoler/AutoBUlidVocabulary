@@ -17,6 +17,9 @@ ids=GVocab(path='./test/').bulid(['哈'])
 print(ids)
 
 >>> [1506]
+
+ids=GVocab(path='./test/').text_voc_ids("哈士奇手机")
+print(ids)
 ```
 
 # # 示例

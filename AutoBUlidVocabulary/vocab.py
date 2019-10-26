@@ -155,3 +155,11 @@ class GVocab:
         return ids
     def bulid(self,word_list):
         return   self.get(word_list)
+    def text_voc_ids(self,text):
+        """
+        逐字获取voc值
+        """
+        # print(list(a))
+        word_list=list(text)
+        vocab_list=self.bulid(word_list)
+        return vocab_list
