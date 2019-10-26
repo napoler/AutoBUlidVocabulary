@@ -26,10 +26,7 @@ from AutoBUlidVocabulary import *
 # print(vocab.load())
 
 
-# GVocab().load()
+ids=GVocab().bulid(['哈'])
+print(ids)
 
-import os
-import sys
-print(os.path.abspath('vocab.txt'))
-os.chdir(sys.path[0])
-# print(os.path.abspath('main.py'))
+

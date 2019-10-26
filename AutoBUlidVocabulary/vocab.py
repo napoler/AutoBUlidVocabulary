@@ -111,12 +111,46 @@ class Vocab:
 
 #  add_vectorizer(self, text_arr)
 
-
+import requests
+import os
 class GVocab:
+    """   这个是自动 获取 
+    """
     def __init__(self):
+        #自动加载
+        self.vocab=self.load()
         pass
+    def download(self):
+        print( "downloading with requests")
+        url = 'https://raw.githubusercontent.com/napoler/AutoBUlidVocabulary/master/AutoBUlidVocabulary/vocab.txt' 
+        r = requests.get(url) 
+        with open("vocab.txt", "wb") as code:
+            code.write(r.content)
+
     def load(self):
+        """
+        这里加载
+        """
+        if os.path.exists("vocab.txt"):
+            pass
+        else:
+            self.download()
+
         f = open("vocab.txt","r")  
         lines = f.readlines()#读取全部内容  
-        for line in lines: 
-            print( line  )
+        vocab={}
+        for i,line in enumerate(lines): 
+            # print( line  )
+            vocab[line[:-1]]=i
+        return vocab
+    def get(self,word_list):
+        """
+        获取词的向量
+        """
+        ids=[]
+        # print(self.vocab)
+        for word in word_list:
+            ids.append(self.vocab[word])
+        return ids
+    def bulid(self,word_list):
+        return   self.get(word_list)

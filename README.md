@@ -6,6 +6,15 @@ Auto BUlid Vocabulary
 pip install AutoBUlidVocabulary
 
 ```
+
+
+## 直接使用google vocab
+
+```
+from AutoBUlidVocabulary import GVocab
+GVocab().load()
+```
+
 # # 示例
 ```
 from AutoBUlidVocabulary import Vocab
@@ -14,5 +23,7 @@ from AutoBUlidVocabulary import Vocab
  vocab=Vocab()
  vocab_list=vocab.vocab_list(word_list)
  print(vocab_list)
+
+
 
 ```
