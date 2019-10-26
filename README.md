@@ -11,8 +11,12 @@ pip install AutoBUlidVocabulary
 ## 直接使用google vocab
 
 ```
-from AutoBUlidVocabulary import GVocab
-GVocab().load()
+from AutoBUlidVocabulary import *
+
+ids=GVocab(path='./test/').bulid(['哈'])
+print(ids)
+
+>>> [1506]
 ```
 
 # # 示例

@@ -116,7 +116,8 @@ import os
 class GVocab:
     """   这个是自动 获取 
     """
-    def __init__(self):
+    def __init__(self,path="./"):
+        self.vocab_file = path+"vocab.txt"
         #自动加载
         self.vocab=self.load()
         pass
@@ -124,19 +125,19 @@ class GVocab:
         print( "downloading with requests")
         url = 'https://raw.githubusercontent.com/napoler/AutoBUlidVocabulary/master/vocab.txt' 
         r = requests.get(url) 
-        with open("vocab.txt", "wb") as code:
+        with open( self.vocab_file, "wb") as code:
             code.write(r.content)
 
     def load(self):
         """
         这里加载
         """
-        if os.path.exists("vocab.txt"):
+        if os.path.exists( self.vocab_file):
             pass
         else:
             self.download()
 
-        f = open("vocab.txt","r")  
+        f = open( self.vocab_file,"r")  
         lines = f.readlines()#读取全部内容  
         vocab={}
         for i,line in enumerate(lines): 
