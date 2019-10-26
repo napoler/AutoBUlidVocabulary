@@ -199,7 +199,7 @@ class GVocab:
         elif text_len > len(text_list):
            text_list=['[CLS]']+text_list+['[SEP]']+['[PAD]']*(text_len-len(text_list))
         elif text_len < len(text_list):
-            text_list=text_list[:text_len]
+            text_list=['[CLS]']+text_list[:text_len]+['[SEP]']
         else:
             text_list=['[CLS]']+text_list+['[SEP]']
         ids_list=self.get(text_list)  
