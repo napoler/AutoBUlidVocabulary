@@ -189,11 +189,26 @@ class GVocab:
         while ' ' in word_list:
             word_list.remove(' ')
         return word_list
+    
     def sentence_ids(self,text,text_len=0):
         #"""自动对句子标记开始结束  自动修剪和添加""""
         #text 文字
         #text_len 数字长度
         text_list=   self.text_list(text)
+        if text_len == 0:
+            text_list=['[CLS]']+text_list+['[SEP]']   
+        elif text_len > len(text_list):
+           text_list=['[CLS]']+text_list+['[SEP]']+['[PAD]']*(text_len-len(text_list))
+        elif text_len < len(text_list):
+            text_list=['[CLS]']+text_list[:text_len]+['[SEP]']
+        else:
+            text_list=['[CLS]']+text_list+['[SEP]']
+        ids_list=self.get(text_list)  
+        return ids_list
+    def sentence_ids_list(self,text_list=[],text_len=0):
+        #"""自动对句子标记开始结束  自动修剪和添加""""
+        #text 文字
+        #text_len 数字长度
         if text_len == 0:
             text_list=['[CLS]']+text_list+['[SEP]']   
         elif text_len > len(text_list):

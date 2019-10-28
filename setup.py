@@ -2,7 +2,7 @@
 from setuptools import find_packages, setup
 from os import path as os_path
 this_directory = os_path.abspath(os_path.dirname(__file__))
-
+import time
 # 读取文件内容
 def read_file(filename):
     with open(os_path.join(this_directory, filename), encoding='utf-8') as f:
@@ -16,7 +16,7 @@ def read_requirements(filename):
 
 setup(
     name='AutoBUlidVocabulary',
-    version='0.1.0.1',
+    version='0.1.0.1'+str(time.time()),
     description='Auto BUlid Vocabulary',
     author='Terry Chan',
     author_email='napoler2008@gmail.com',
