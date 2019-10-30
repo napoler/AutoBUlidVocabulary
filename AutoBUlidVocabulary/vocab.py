@@ -181,7 +181,10 @@ class GVocab:
         文本转化成数组
         """
         # text = re.sub(r'[^\w\s]','',text)
-        word_list=list(text)
+
+        # word_list=list(text) #自动字符级别的转换为数组
+
+        word_list=  text.split()
         # word_list=[]
         # for word in jieba.cut(text):
         #     word_list.append(word)
@@ -189,12 +192,17 @@ class GVocab:
         while ' ' in word_list:
             word_list.remove(' ')
         return word_list
-    
     def sentence_ids(self,text,text_len=0):
         #"""自动对句子标记开始结束  自动修剪和添加""""
-        #text 文字
+        #text 文字 根据空格分割
         #text_len 数字长度
         text_list=   self.text_list(text)
+        return self.sentence_ids_list(text_list=text_list,text_len=text_len)
+        
+    def sentence_ids_list_seq(self,text_list=[],text_len=0):
+        #"""自动对句子标记开始结束  自动修剪和添加 这里自动添加句子数据""""
+        #text 文字
+        #text_len 数字长度
         if text_len == 0:
             text_list=['[CLS]']+text_list+['[SEP]']   
         elif text_len > len(text_list):
@@ -210,12 +218,12 @@ class GVocab:
         #text 文字
         #text_len 数字长度
         if text_len == 0:
-            text_list=['[CLS]']+text_list+['[SEP]']   
+            text_list=text_list  
         elif text_len > len(text_list):
-           text_list=['[CLS]']+text_list+['[SEP]']+['[PAD]']*(text_len-len(text_list))
+           text_list=text_list+['[PAD]']*(text_len-len(text_list))
         elif text_len < len(text_list):
-            text_list=['[CLS]']+text_list[:text_len]+['[SEP]']
+            text_list=text_list[:text_len]
         else:
-            text_list=['[CLS]']+text_list+['[SEP]']
+            text_list=text_list
         ids_list=self.get(text_list)  
         return ids_list
