@@ -222,7 +222,8 @@ class GVocab:
         elif text_len > len(text_list):
            text_list=text_list+['[PAD]']*(text_len-len(text_list))
         elif text_len < len(text_list):
-            text_list=text_list[:text_len]
+            #数据过长进行剪辑下
+            text_list=text_list[:(text_len-1)]+[text_list[-1]]
         else:
             text_list=text_list
         ids_list=self.get(text_list)  
